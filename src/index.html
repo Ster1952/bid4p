@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>4P Video Call</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1" name="viewport" />    
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+        <link rel='stylesheet' href='assets/css/app.css' type="text/css">
+
+        <script src='/socket.io/socket.io.js' defer></script>
+        <script type="module" src='assets/js/rtc.js' defer></script>
+
+        <script src="https://webrtc.github.io/adapter/adapter-latest.js" defer></script>
+       
+    </head>
+
+    <body>
+        <div class="row">
+            <video class="local-video" id='local' volume='0' autoplay muted disablepictureinpicture></video>
+        </div>
+        <div>
+            <button id='toggle-video' title="Hide Video">
+                <i class="fa fa-video text-white"></i>
+            </button>
+            <button id='toggle-mute' title="Mute">
+                <i class="fa fa-microphone text-white"></i>
+            </button>
+        </div>
+        <div class="row" id='videos'></div>
+    </body>
+</html>
