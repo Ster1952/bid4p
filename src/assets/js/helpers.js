@@ -6,39 +6,6 @@ export default {
     },
 
 
-    pageHasFocus() {
-        return !( document.hidden || document.onfocusout || window.onpagehide || window.onblur );
-    },
-
-
-    getQString( url = '', keyToReturn = '' ) {
-        url = url ? url : location.href;
-        let queryStrings = decodeURIComponent( url ).split( '#', 2 )[0].split( '?', 2 )[1];
-
-        if ( queryStrings ) {
-            let splittedQStrings = queryStrings.split( '&' );
-
-            if ( splittedQStrings.length ) {
-                let queryStringObj = {};
-
-                splittedQStrings.forEach( function ( keyValuePair ) {
-                    let keyValue = keyValuePair.split( '=', 2 );
-
-                    if ( keyValue.length ) {
-                        queryStringObj[keyValue[0]] = keyValue[1];
-                    }
-                } );
-
-                return keyToReturn ? ( queryStringObj[keyToReturn] ? queryStringObj[keyToReturn] : null ) : queryStringObj;
-            }
-
-            return null;
-        }
-
-        return null;
-    },
-
-
     userMediaAvailable() {
         return !!( navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia );
     },
@@ -48,22 +15,6 @@ export default {
         if ( this.userMediaAvailable() ) {
             return navigator.mediaDevices.getUserMedia( {
                 video: {"width": 320, "height": 240, "frameRate": 15 },
-                audio: {
-                    echoCancellation: true,
-                    noiseSuppression: true
-                }
-            } );
-        }
-
-        else {
-            throw new Error( 'User media not available' );
-        }
-    },
-
-
-    getUserAudio() {
-        if ( this.userMediaAvailable() ) {
-            return navigator.mediaDevices.getUserMedia( {
                 audio: {
                     echoCancellation: true,
                     noiseSuppression: true
@@ -160,49 +111,4 @@ export default {
         mirrorMode ? localVidElem.classList.add( 'mirror-mode' ) : localVidElem.classList.remove( 'mirror-mode' );
     }
 
-
-    
-
-
-    //     for ( let i = 0; i < totalRemoteVideosDesktop; i++ ) {
-    //         elem[i].style.width = newWidth;
-    //     }
-    // },
-
-
-    // createDemoRemotes( str, total = 6 ) {
-    //     let i = 0;
-
-    //     let testInterval = setInterval( () => {
-    //         let newVid = document.createElement( 'video' );
-    //         newVid.id = `demo-${ i }-video`;
-    //         newVid.srcObject = str;
-    //         newVid.autoplay = true;
-    //         newVid.className = 'remote-video';
-
-    //         //video controls elements
-    //         let controlDiv = document.createElement( 'div' );
-    //         controlDiv.className = 'remote-video-controls';
-    //         controlDiv.innerHTML = `<i class="fa fa-microphone text-white pr-3 mute-remote-mic" title="Mute"></i>
-    //             <i class="fa fa-expand text-white expand-remote-video" title="Expand"></i>`;
-
-    //         //create a new div for card
-    //         let cardDiv = document.createElement( 'div' );
-    //         cardDiv.className = 'card card-sm';
-    //         cardDiv.id = `demo-${ i }`;
-    //         cardDiv.appendChild( newVid );
-    //         cardDiv.appendChild( controlDiv );
-
-    //         //put div in main-section elem
-    //         document.getElementById( 'videos' ).appendChild( cardDiv );
-
-    //         this.adjustVideoElemSize();
-
-    //         i++;
-
-    //         if ( i == total ) {
-    //             clearInterval( testInterval );
-    //         }
-    //     }, 2000 );
-    // }
 };
