@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Chat</title>
+    <link rel="stylesheet" href="public/assets/app.css" type="text/css">
+    <script> const ROOM_ID = prompt("Enter room ID")</script>
+    <script src="https://kit.fontawesome.com/c939d0e917.js" defer></script>
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js" defer></script>
+    <script src="/socket.io/socket.io.js" defer></script>
+
+    <script type="module" src="/public/assets/chat.js" defer></script>
+
+</head>
+
+<body>
+    <h2>Welcome</h2>
+    <div id="block">
+    <div class="row">
+        <video class="local-video" id='local' autoplay muted disablepictureinpicture></video>
+    </div>
+    <div class="options__left ">
+        <div id="stopVideo" class="options__buttons ">
+            <i class="fa fa-video-camera"></i>
+        </div>
+        <div id="muteButton" class="options__buttons ">
+            <i class="fa fa-microphone"></i>
+        </div>
+    </div>
+    <div class="row" id='videos'>
+    </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+
+#block {
+    height: 800px;
+    width: 200px;
+    position: relative;
+}
+
+.row {
+    height: 175px;
+    width: 200px;
+}
+.remote-video{
+    position: relative;
+    height: 150px;
+    width: 200px;
+    padding-top: 25px;
+}
+
+.local-video{
+    position: relative;
+    height: 150px;
+    width: 200px; 
+}
+.options__left {
+    display: flex;
+    justify-content: center;
+}
+
+.options__buttons {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     background-color: #eeeeee;
+     border-radius: 5px;
+     color: black;
+     font-size: 1.2rem;
+     height: 40px;
+     width: 40px;
+     margin: 0 0.5rem;
+
+ }
+ .background__red {
+     background-color: red;
+ }
+ body {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(29, 99, 122);
+    
+}

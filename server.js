@@ -1,12 +1,22 @@
-const express = require('express');
+const express = require("express");
+const { createServer } = require("http");
+const { userInfo } = require("os");
+const { Server } = require("socket.io");
 const app = express();
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
+const httpServer = createServer(app)
+const io = new Server(httpServer);
+
+app.use(express.static(__dirname + '/'));
+app.get('/', function (req, res) {
+    res.sendFile(__dirname + '/public/index.html');
+});
+
+const PORT = process.env.PORT || 5056;
+//---------------
+
 let path = require('path');
 //let favicon = require('serve-favicon');
 
-const PORT = process.env.PORT || 3000;
-//app.use(favicon(path.join(__dirname, 'favicon.ico')));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
 app.get('/', (req, res)=>{
@@ -19,16 +29,16 @@ io.on('connection', (socket) => {
    console.log('on connection', socket.id);
 
 
-    socket.on('subscribe', (data)=>{
+    socket.on('participate', (data)=>{
         console.log('data--->>>',data);
         socket.join(data.room);
-        socket.join(data.socketId);
+        //socket.join(data.socketId);
         const clients = io.sockets.adapter.rooms.get(data.room);
-        console.log('clients and server id --->', data.socketId, socket.id);
+        console.log('clients--->', clients);
         const numClients = clients ? clients.size : 0;
-        //console.log('data room', clients, numClients);
+        console.log('data room', clients, numClients);
         if (numClients > 1) {
-            socket.to(data.room).emit('new user', {socketId:data.socketId});
+            socket.to(data.room).emit('new_user', {socketId:data.socketId});
         }
 
 
@@ -37,7 +47,7 @@ io.on('connection', (socket) => {
     
 
     socket.on('newUserStart', (data)=>{
-        //console.log('newuserstart', data.to)
+        console.log('newuserstart', data.to, data.sender)
         socket.to(data.to).emit('newUserStart', {sender:data.sender});
     });
 
@@ -61,16 +71,28 @@ io.on('connection', (socket) => {
     socket.on('ice candidates', (data)=>{
         socket.to(data.to).emit('ice candidates', {candidate:data.candidate, sender:data.sender});
     });
+
     socket.on('disconnect', function() {
         console.log('A user disconnected: ' + socket.id);
 
     });
 });
 
-server.listen(PORT, async() => {
+
+//------------
+
+httpServer.listen(PORT, async () => {
     try {
-        console.log('Server is listening on port localhost:3000');
-    } catch (e) {
-        console.error(e);
+        console.log('Listening on port :%s...', httpServer.address().port)
+    }
+    catch (e) {
+        console.error(e)
     }
 });
+
+
+
+
+
+
+
