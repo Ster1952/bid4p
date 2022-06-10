@@ -14,10 +14,12 @@ export default {
     getUserFullMedia() {
         if ( this.userMediaAvailable() ) {
             return navigator.mediaDevices.getUserMedia( {
-                video: {"width": 320, "height": 240, "frameRate": 15 },
+                video: {width: {idea: 1280}, height: {ideal: 720}, frameRate: {ideal: 60, min: 15}},
                 audio: {
                     echoCancellation: true,
-                    noiseSuppression: true
+                    noiseSuppression: true,
+                    disableWebAudio: true
+
                 }
             } );
         }

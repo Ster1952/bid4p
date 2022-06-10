@@ -246,55 +246,73 @@ window.addEventListener( 'load', () => {
 
 
         //When the video mute icon is clicked
-        document.getElementById( 'toggle-video' ).addEventListener( 'click', ( e ) => {
+        document.getElementById('toggle-video').addEventListener('click', (e) => {
             e.preventDefault();
-
-            let elem = document.getElementById( 'toggle-video' );
-
-            if ( myStream.getVideoTracks()[0].enabled ) {
-                e.target.classList.remove( 'fa-video' );
-                e.target.classList.add( 'fa-video-slash' );
-                //elem.setAttribute( 'title', 'Show Video' );
-
-                myStream.getVideoTracks()[0].enabled = false;
-            }
-
-            else {
-                e.target.classList.remove( 'fa-video-slash' );
-                e.target.classList.add( 'fa-video' );
-                //elem.setAttribute( 'title', 'Hide Video' );
-
-                myStream.getVideoTracks()[0].enabled = true;
-            }
-
-            broadcastNewTracks( myStream, 'video' );
-        } );
+        console.log('toggle video',e.target.classList)
+        let iconVideo = document.getElementById('buttonVideo')
+            if (myStream.getVideoTracks()[0].enabled){
+                if (e.target.classList.contains('btn-video')){
+                    console.log('step1')
+                   iconVideo.className = 'fa fa-video-slash fa-xl text-white'
+                   myStream.getVideoTracks()[0].enabled = false;
+                }
+                else if (e.target.classList.contains('fa-video') || e.target.classList.contains('btn-video')){
+                    e.target.classList.remove('fa-video');
+                    e.target.classList.add('fa-video-slash');
+                    myStream.getVideoTracks()[0].enabled = false;
+                    }
+                }
+                else {
+                    if (e.target.classList.contains('btn-video')){
+                        console.log('step3')
+                        iconVideo.className = 'fa fa-video fa-xl text-white'
+                        myStream.getVideoTracks()[0].enabled = true;
+                     }
+                    else if(e.target.classList.contains('fa-video-slash') || e.target.classList.contains('btn-video')){
+                        e.target.classList.remove('fa-video-slash');
+                        e.target.classList.add('fa-video');
+                        myStream.getVideoTracks()[0].enabled = true;
+                    }
+                }
+                broadcastNewTracks(myStream, 'video')
+        
+        })
 
 
         //When the audio mute icon is clicked
-        document.getElementById( 'toggle-mute' ).addEventListener( 'click', ( e ) => {
+        document.getElementById('toggle-mute').addEventListener('click', (e) => {
             e.preventDefault();
-
-            let elem = document.getElementById( 'toggle-mute' );
-
-            if ( myStream.getAudioTracks()[0].enabled ) {
-                e.target.classList.remove( 'fa-microphone' );
-                e.target.classList.add( 'fa-microphone-slash' );
-                //elem.setAttribute( 'title', 'Unmute' );
-
-                myStream.getAudioTracks()[0].enabled = false;
-            }
-
-            else {
-                e.target.classList.remove( 'fa-microphone-slash' );
-                e.target.classList.add( 'fa-microphone' );
-                //elem.setAttribute( 'title', 'Mute' );
-
-                myStream.getAudioTracks()[0].enabled = true;
-            }
-
-            broadcastNewTracks( myStream, 'audio' );
-        } );
+            console.log('toggle audio',e.target.classList)
+            let iconAudio = document.getElementById('buttonAudio')
+            if (myStream.getAudioTracks()[0].enabled){
+                if (e.target.classList.contains('btn-audio')){
+                    console.log('step1')
+                   iconAudio.className = 'fa fa-microphone-slash fa-xl text-white'
+                   myStream.getAudioTracks()[0].enabled = false;
+                }
+                else if (e.target.classList.contains('fa-microphone')){
+                    console.log('step2')
+                    e.target.classList.remove('fa-microphone');
+                    e.target.classList.add('fa-microphone-slash');
+                    myStream.getAudioTracks()[0].enabled = false;
+                    }
+                }
+                else {
+                    if (e.target.classList.contains('btn-audio')){
+                        console.log('step3')
+                        iconAudio.className = 'fa fa-microphone fa-xl text-white'
+                        myStream.getAudioTracks()[0].enabled = true;
+                     }
+                     else if(e.target.classList.contains('fa-microphone-slash')){
+                        console.log('step4')
+                        e.target.classList.remove('fa-microphone-slash');
+                        e.target.classList.add('fa-microphone');
+                        myStream.getAudioTracks()[0].enabled = true;
+                    }
+                }
+                broadcastNewTracks(myStream, 'audio')
+        
+        })
 
     //}
 } );

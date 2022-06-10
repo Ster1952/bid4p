@@ -4,30 +4,31 @@
         <title>4P Video Call</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta content="width=device-width, initial-scale=1" name="viewport" />    
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-
-        <link rel='stylesheet' href='assets/css/app.css' type="text/css">
-
-        <script src='/socket.io/socket.io.js' defer></script>
-        <script type="module" src='assets/js/rtc.js' defer></script>
-
-        <script src="https://webrtc.github.io/adapter/adapter-latest.js" defer></script>
-       
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta content="width=device-width, initial-scale=1, shrink-to-fit=no, minimal-ui" name="viewport" />    
+        <link rel='stylesheet' href='assets/css/app.css' type="text/css">  
     </head>
 
     <body>
+        <center><h2>Video Chat App</h2></center>
         <div class="row">
-            <video class="local-video" id='local' volume='0' autoplay muted disablepictureinpicture></video>
+            <video class="local-video" id='local' volume="0" preload='none' autoplay muted playsinline disablepictureinpicture></video>
         </div>
-        <div>
-            <button id='toggle-video' title="Hide Video">
-                <i class="fa fa-video text-white"></i>
-            </button>
-            <button id='toggle-mute' title="Mute">
-                <i class="fa fa-microphone text-white"></i>
-            </button>
+        
+        <div class="buttons">
+          <button class="btn-video" id="toggle-video" title="Hide Vide">
+              <i class="fa fa-video fa-xl text-white" id="buttonVideo"></i>
+          </button>
+          <button class="btn-audio" id="toggle-mute" title="Mute">
+              <i class="fa fa-microphone fa-xl text-white" id="buttonAudio"></i>
+          </button>
         </div>
-        <div class="row" id='videos'></div>
+        
+            <div class="row" id='videos'></div>  
+    
+        <script src='/socket.io/socket.io.js' defer></script>
+        <script type="module" src='assets/js/rtc.js' defer></script>
+        <script src="https://kit.fontawesome.com/51fc3eefb6.js"></script>
+        <script src="https://webrtc.github.io/adapter/adapter-latest.js" defer></script>
     </body>
 </html>
