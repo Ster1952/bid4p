@@ -1,0 +1,1 @@
+Online card game for four players.  You need a ZOOM type app also to allow players to collaborate during card movement.
