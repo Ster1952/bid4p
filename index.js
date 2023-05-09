@@ -9,7 +9,7 @@ let playGame = new MainGame();
 var scene = new Phaser.Scene("game");
 
 const config = {
-    type: Phaser.AUTO,
+    type: Phaser.CANVAS,
     parent: 'divId',
     width: 1366,
     height: 768,
