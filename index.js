@@ -1,7 +1,7 @@
 import MainGame from "/game.js";
 import TitleScene from '/TitleScene.js';
 import InstructionScene from '/InstructionScene.js';
-// test
+// test two
 let TitlePage = new TitleScene();
 let InstructionPage = new InstructionScene();
 let playGame = new MainGame();
