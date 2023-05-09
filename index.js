@@ -10,6 +10,7 @@ var scene = new Phaser.Scene("game");
 
 const config = {
     type: Phaser.CANVAS,
+    audio: {disableWebAudio: true},
     parent: 'divId',
     width: 1366,
     height: 768,
